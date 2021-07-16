@@ -47,13 +47,29 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 else if (i.StartsWith("obj ") || i.StartsWith("array "))
                 {
                     ObjCreation = true;
-                    fjs.Add(i.Replace("obj", "var") + " = {");
+
+                    if (i.StartsWith("obj ")) {
+                        fjs.Add(i.Replace("obj", "var") + " = {");
+                    }
+
+                    if (i.StartsWith("array ")) {
+                        fjs.Add(i.Replace("array", "var") + " = [");
+                    }
                 }
 
                 else if (i.StartsWith("end-obj") || i.StartsWith("end-array"))
                 {
+
                     ObjCreation = false;
+
+                    if (i.StartsWith("end-obj")) {
                     fjs.Add("};");
+                    }
+
+                    if (i.StartsWith("end-array"))
+                    {
+                        fjs.Add("];");
+                    }
                 }
 
                 /* for Loop
