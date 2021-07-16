@@ -271,13 +271,15 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 //QuasarStack DOM Element Creation
                 else if (i.StartsWith("Element<"))
                 {
+                    ObjCreation = true;
                     var elemtype = InBrackets(i);
-                    fjs.Add("var " + i.
-                    Replace(elemtype, "").Replace("elem", "").Replace(" ", "")
-                    + " = $qs.element.new('" + elemtype + "', {");
+                    fjs.Add("var " + RemoveFirst("Element", i.
+                    Replace(elemtype, "").Replace("<", "").Replace(">", "").Replace(" ", "")
+                    + " = $qs.element.new('" + elemtype + "', {"));
                 }
                 else if (i.StartsWith("end-Element"))
                 {
+                    ObjCreation = false;
                     fjs.Add("});");
                 }
 
@@ -306,6 +308,11 @@ namespace NeoScriptCore.ProjectHandler.Controllers
         static string InRoundBrackets(string i)
         {
             return String.Join("", Regex.Matches(i, @"\((.+?)\)")).Replace(")", "").Replace("(", "");
+        }
+
+        static string RemoveFirst(string firstOc, string baseString)
+        {
+            return new Regex(Regex.Escape(firstOc)).Replace(baseString, "", 1);
         }
     }
 }

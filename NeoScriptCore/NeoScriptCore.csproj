@@ -6,7 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="NSLibraries\misc\jquery-3.6.0.min.js">
+    <None Update="NSLibraries\misc\babel\babel.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\bootstrap\css\bootstrap-grid.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\bootstrap\css\bootstrap-reboot.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\bootstrap\css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\bootstrap\js\bootstrap.bundle.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\bootstrap\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\misc\jquery\jquery-3.6.0.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="NSLibraries\NSAbstractions.js">
