@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="NSLibraries\misc\jquery-3.6.0.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="NSLibraries\NSAbstractions.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
