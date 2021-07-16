@@ -9,6 +9,9 @@
     <None Update="NSLibraries\NSAbstractions.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="NSLibraries\QuasarStack.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

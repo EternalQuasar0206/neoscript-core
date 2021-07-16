@@ -25,7 +25,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
             
             foreach (string i in tScript)
             {
-                /* Basic Language Functions/Utils */
+                /*========== BASIC LANGUAGE FUNCTIONS/UTILS ==========*/
 
                 /* Default var
                  * var MyVar = 0
@@ -42,17 +42,19 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                  * b: "2"
                  * c: "3"
                  * end-object
-                 */ 
+                 */
 
                 else if (i.StartsWith("obj ") || i.StartsWith("array "))
                 {
                     ObjCreation = true;
 
-                    if (i.StartsWith("obj ")) {
+                    if (i.StartsWith("obj "))
+                    {
                         fjs.Add(i.Replace("obj", "var") + " = {");
                     }
 
-                    if (i.StartsWith("array ")) {
+                    if (i.StartsWith("array "))
+                    {
                         fjs.Add(i.Replace("array", "var") + " = [");
                     }
                 }
@@ -62,8 +64,9 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 
                     ObjCreation = false;
 
-                    if (i.StartsWith("end-obj")) {
-                    fjs.Add("};");
+                    if (i.StartsWith("end-obj"))
+                    {
+                        fjs.Add("};");
                     }
 
                     if (i.StartsWith("end-array"))
@@ -72,7 +75,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     }
                 }
 
-                /* for Loop
+                /* for
                  * for var i = 0, i < 9, i++
                  * print(i)
                  * end-for
@@ -151,7 +154,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add("`;");
                 }
 
-                /* Function
+                /* function
                  * function MyFunction(arg1, arg2)
                  * console(arg1 + arg2)
                  * end-function
@@ -167,6 +170,104 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add("}");
                 }
 
+                /* if
+                 * if (conditions)
+                 *  console("Hi")
+                 * else if (conditions)
+                 *  console("Ho")
+                 * else (conditions)
+                 *  console("Ha")
+                 * end-if
+                 */
+
+                else if (i.StartsWith("if"))
+                {
+                    fjs.Add(i + "{");
+                }
+
+                else if (i.StartsWith("else if"))
+                {
+                    fjs.Add("}" + i + "{");
+                }
+
+                else if (i.StartsWith("else"))
+                {
+                    fjs.Add("}" + i + "{");
+                }
+
+                else if (i.StartsWith("end-if"))
+                {
+                    fjs.Add("}");
+                }
+
+                /* while 
+                 * while (conditions)
+                 * console("Yay")
+                 * end-while
+                 */
+
+                else if (i.StartsWith("while"))
+                {
+                    fjs.Add(i + "{");
+                }
+
+                else if (i.StartsWith("end-while"))
+                {
+                    fjs.Add("}");
+                }
+
+                /*========== DOM OPERATION + QUASARSTACK FUNCTIONS ==========*/
+
+                else if (i.StartsWith("Environment<"))
+                {
+                    if (InBrackets(i) == "EnableImports")
+                    {
+                        fjs.Add("$qs.system.environment.enableExternalLoad = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "EnableStates")
+                    {
+                        fjs.Add("$qs.system.environment.enableSaveState = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "EnableVirtualization")
+                    {
+                        fjs.Add("$qs.system.environment.enableVirtualization = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                }
+
+                else if (i.StartsWith("Application<"))
+                {
+                    if (InBrackets(i) == "Title")
+                    {
+                        fjs.Add("$qs.app.appTitle = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "Icon")
+                    {
+                        fjs.Add("$qs.app.Icon = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "Author")
+                    {
+                        fjs.Add("$qs.app.appAuthor = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "Version")
+                    {
+                        fjs.Add("$qs.app.appVersion = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                    else if (InBrackets(i) == "Description")
+                    {
+                        fjs.Add("$qs.app.appDescription = "
+                            + InRoundBrackets(i) + ";");
+                    }
+                }
+
+                /*========== OTHERS ==========*/
+
                 else if (i != "" && ObjCreation)
                 {
                     fjs.Add(i + ",");
@@ -176,7 +277,6 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 {
                     fjs.Add(i + ";");
                 }
-
             }
 
             return String.Join("", fjs.ToArray());

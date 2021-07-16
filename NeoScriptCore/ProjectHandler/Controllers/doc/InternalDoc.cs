@@ -30,6 +30,10 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     "loop  | loop (5)\n" +
                     "      |  print('Hi')\n" +
                     "      | end-loop\n\n" +
+                    "while | while (a > 0)\n" +
+                    "      |  a--\n" +
+                    "      |  print(a)\n" +
+                    "      | end-while\n\n" +
                     "console  | console('MyMessage', 'error / warn / text(default text)')\n\n" +
                     "mstring | mstring MyString\n" +
                     "        |  string line 1\n" +
