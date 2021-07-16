@@ -218,6 +218,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 
                 /*========== DOM OPERATION + QUASARSTACK FUNCTIONS ==========*/
 
+                //QuasarStack Environment Configurations
                 else if (i.StartsWith("Environment<"))
                 {
                     if (InBrackets(i) == "EnableImports")
@@ -237,6 +238,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     }
                 }
 
+                //QuasarStack Application Configurations
                 else if (i.StartsWith("Application<"))
                 {
                     if (InBrackets(i) == "Title")
@@ -265,6 +267,20 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                             + InRoundBrackets(i) + ";");
                     }
                 }
+
+                //QuasarStack DOM Element Creation
+                else if (i.StartsWith("Element<"))
+                {
+                    var elemtype = InBrackets(i);
+                    fjs.Add("var " + i.
+                    Replace(elemtype, "").Replace("elem", "").Replace(" ", "")
+                    + " = $qs.element.new('" + elemtype + "', {");
+                }
+                else if (i.StartsWith("end-Element"))
+                {
+                    fjs.Add("});");
+                }
+
 
                 /*========== OTHERS ==========*/
 
