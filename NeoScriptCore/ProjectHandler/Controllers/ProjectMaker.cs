@@ -10,6 +10,9 @@ namespace NeoScriptCore.ProjectHandler.Controllers
     {
         public static string QuasarStackJS_Version = "1.0.0";
         public static string JQuery_Version = "3.6.0";
+        public static string Bootstrap_Version = "4.1.3";
+        public static string React_Version = "17.0.2";
+        public static string ReactDom_Version = "16.14.0";
         public static string NewProject(string targetDirectory)
         {
             string response = string.Empty;
