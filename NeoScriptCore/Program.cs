@@ -40,15 +40,10 @@ namespace NeoScriptCore
 
                 Main(null);
             }
-            else if (k.StartsWith("popper"))
+            else if (k.StartsWith("com-list "))
             {
-                var s = "MyLongString<StringIWant>ASAS";
-
-                var arrStr = String.Join(";", Regex.Matches(s, @"\<(.+?)\>")
-                                    .Cast<Match>()
-                                    .Select(m => m.Groups[1].Value));
-
-                write(arrStr);
+                InternalDoc.ComList(k.Replace("com-list ", ""));
+                Main(null);
             }
             else
             {

@@ -92,11 +92,11 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
 
                 /* loop
-                 * loop<8>
+                 * loop(8)
                  * print("Test")
                  * end-loop
                  */
-                else if (i.StartsWith("loop<"))
+                else if (i.StartsWith("loop("))
                 {
                     string instanceName = "nsLInstance_"
                     + new Random().Next(0, 999)
@@ -106,7 +106,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add("for(var "
                     + instanceName
                     + " = "
-                    + InBrackets(i)
+                    + InRoundBrackets(i)
                     + ";"
                     + instanceName
                     + " > 0;"
@@ -185,6 +185,11 @@ namespace NeoScriptCore.ProjectHandler.Controllers
         static string InBrackets(string i)
         {
             return String.Join("", Regex.Matches(i, @"\<(.+?)\>")).Replace(">", "").Replace("<", "");
+        }
+
+        static string InRoundBrackets(string i)
+        {
+            return String.Join("", Regex.Matches(i, @"\((.+?)\)")).Replace(")", "").Replace("(", "");
         }
     }
 }
