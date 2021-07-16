@@ -8,6 +8,8 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 {
     public static class ProjectMaker
     {
+        public static string QuasarStackJS_Version = "1.0.0";
+        public static string JQuery_Version = "3.6.0";
         public static string NewProject(string targetDirectory)
         {
             string response = string.Empty;
