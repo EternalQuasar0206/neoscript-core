@@ -283,6 +283,8 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add("});");
                 }
 
+                //QuasarStack DOM Element Management
+
 
                 /*========== OTHERS ==========*/
 
