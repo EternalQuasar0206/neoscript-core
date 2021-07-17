@@ -40,9 +40,9 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     "        |  string line 2\n" +
                     "        |  string line 3\n" +
                     "        | end-mstring\n\n" +
-                    "function | function MyFunction(arg1 + arg2)\n" +
-                    "         |  console(arg1 + arg2)\n" +
-                    "         | end-function\n"
+                    "def | def MyFunction(arg1 + arg2)\n" +
+                    "    |  console(arg1 + arg2)\n" +
+                    "    | end-def\n"
                     );
                 Console.ForegroundColor = ConsoleColor.Green;
                 break;

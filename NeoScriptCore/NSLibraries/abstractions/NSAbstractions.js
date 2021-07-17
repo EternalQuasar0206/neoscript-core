@@ -15,7 +15,3 @@ function _neoScriptInject(toPrint) {
 		$qs.element.inject('body', toPrint);
 	}
 }
-
-function _neoScriptInjectTo() {
-	
-}

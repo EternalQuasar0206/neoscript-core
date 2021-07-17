@@ -9,7 +9,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 {
     public static class InitialParser
     {
-        public static string GetJavaScript(string[] NeoScript)
+        public static string GetJavaScript(string[] NeoScript, bool unsafeParse = false)
         {
             bool MStringEdit = false;
             bool ObjCreation = false;
@@ -132,12 +132,28 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
 
                 /* Print Action
-                * console("MyMessage", "error/warn/text (default text)")
-                */
+                 * print("MyText")
+                 */
 
-                else if (i.StartsWith("console"))
+                else if (i.StartsWith("print"))
                 {
-                    fjs.Add(i.Replace("console", "consPrint") + ";");
+                    fjs.Add(i.Replace("print", " _neoScriptSafeInject") + ";");
+                }
+
+                /* Echo Action
+                 * echo("MyHTML")
+                 */
+
+                else if (i.StartsWith("echo"))
+                {
+                    if (unsafeParse)
+                    {
+                        fjs.Add(i.Replace("echo", " _neoScriptInject") + ";");
+                    }
+                    else
+                    {
+                        fjs.Add(i.Replace("print", " _neoScriptSafeInject") + ";");
+                    }
                 }
 
                 /* Multiline String
@@ -164,17 +180,17 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
 
                 /* function
-                 * function MyFunction(arg1, arg2)
+                 * def MyFunction(arg1, arg2)
                  * console(arg1 + arg2)
-                 * end-function
+                 * end-def
                  */
 
-                else if (i.StartsWith("function"))
+                else if (i.StartsWith("def"))
                 {
-                    fjs.Add(i + "{");
+                    fjs.Add(ReplaceFirst("def", i, "function") + "{");
                 }
 
-                else if (i.StartsWith("end-function"))
+                else if (i.StartsWith("end-def"))
                 {
                     fjs.Add("}");
                 }
@@ -294,7 +310,13 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 
                 //QuasarStack DOM Element Management
                 //DOM<Action>(Element, Arguments)
-
+                else if (i.StartsWith("DOM<"))
+                {
+                    if(InBrackets(i) == "Destroy") //DOM<Destroy>(Element, Timeout)
+                    {
+                        fjs.Add(i.Replace("DOM<Destroy>", "$qs.element.destroy") + ";");
+                    }
+                }
 
                 /*========== OTHERS ==========*/
 
@@ -311,22 +333,27 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 
             // Final Parser Actions
             return String.Join("", fjs.ToArray())
-            .Replace("DOM<Find>", "$qs.element.find");
+            .Replace("DOM<Find>", "$qs.element.find"); //Dom<Find>("target")
         }
 
         static string InBrackets(string i)
         {
-            return String.Join("", Regex.Matches(i, @"\<(.+?)\>")).Replace(">", "").Replace("<", "");
+            return String.Join("", Regex.Match(i, @"\<(.+?)\>").Groups[1].Value).Replace(">", "").Replace("<", "");
         }
 
         static string InRoundBrackets(string i)
         {
-            return String.Join("", Regex.Matches(i, @"\((.+?)\)")).Replace(")", "").Replace("(", "");
+            return String.Join("", Regex.Match(i, @"\((.+?)\)").Groups[1].Value).Replace(")", "").Replace("(", "");
         }
 
         static string RemoveFirst(string firstOc, string baseString)
         {
             return new Regex(Regex.Escape(firstOc)).Replace(baseString, "", 1);
+        }
+
+        static string ReplaceFirst(string firstOc, string baseString, string toReplace)
+        {
+            return new Regex(Regex.Escape(firstOc)).Replace(baseString, toReplace, 1);
         }
     }
 }

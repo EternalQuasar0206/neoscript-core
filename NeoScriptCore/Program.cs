@@ -34,9 +34,15 @@ namespace NeoScriptCore
 
                 Main(null);
             }
-            else if (k.StartsWith("neoscript-parse "))
+            else if (k.StartsWith("parse "))
             {
-                write(InitialParser.GetJavaScript(File.ReadAllLines(k.Replace("neoscript-parse ", ""))));
+                write(InitialParser.GetJavaScript(File.ReadAllLines(k.Replace("parse ", "")), true));
+
+                Main(null);
+            }
+            else if (k.StartsWith("safe-parse "))
+            {
+                write(InitialParser.GetJavaScript(File.ReadAllLines(k.Replace("parse ", "")), false));
 
                 Main(null);
             }
