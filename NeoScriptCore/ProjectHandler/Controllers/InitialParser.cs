@@ -131,6 +131,15 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add(i.Replace("console", "consPrint") + ";");
                 }
 
+                /* Print Action
+                * console("MyMessage", "error/warn/text (default text)")
+                */
+
+                else if (i.StartsWith("console"))
+                {
+                    fjs.Add(i.Replace("console", "consPrint") + ";");
+                }
+
                 /* Multiline String
                  * mstring MyString
                  * value1
@@ -284,6 +293,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
 
                 //QuasarStack DOM Element Management
+                //DOM<Action>(Element, Arguments)
 
 
                 /*========== OTHERS ==========*/
@@ -299,7 +309,9 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
             }
 
-            return String.Join("", fjs.ToArray());
+            // Final Parser Actions
+            return String.Join("", fjs.ToArray())
+            .Replace("DOM<Find>", "$qs.element.find");
         }
 
         static string InBrackets(string i)
