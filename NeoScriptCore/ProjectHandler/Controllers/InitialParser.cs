@@ -312,9 +312,54 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 //DOM<Action>(Element, Arguments)
                 else if (i.StartsWith("DOM<"))
                 {
-                    if(InBrackets(i) == "Destroy") //DOM<Destroy>(Element, Timeout)
+                    if (InBrackets(i) == "Destroy") //DOM<Destroy>("Element", Timeout)
                     {
                         fjs.Add(i.Replace("DOM<Destroy>", "$qs.element.destroy") + ";");
+                    }
+
+                    if (InBrackets(i) == "Clear") //DOM<Clear>("Element")
+                    {
+                        fjs.Add(i.Replace("DOM<Clear>", "$qs.element.clear") + ";");
+                    }
+
+                    if (InBrackets(i) == "Hide") //DOM<Hide>("Element")
+                    {
+                        fjs.Add(i.Replace("DOM<Hide>", "$qs.element.hide") + ";");
+                    }
+
+                    if (InBrackets(i) == "Show") //DOM<Show>("Element", "NewDisplayType")
+                    {
+                        fjs.Add(i.Replace("DOM<Show>", "$qs.element.show") + ";");
+                    }
+
+                    if (InBrackets(i) == "Update") //DOM<Update>("Element", New Content)
+                    {
+                        fjs.Add(i.Replace("DOM<Update>", "$qs.element.update") + ";");
+                    }
+
+                    if (InBrackets(i) == "Inject") //DOM<Inject>("Element", New Content)
+                    {
+                        fjs.Add(i.Replace("DOM<Inject>", "$qs.element.inject") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetParent") //DOM<SetParent>("Target", "Origin")
+                    {
+                        fjs.Add(i.Replace("DOM<SetParent>", "$qs.element.setParent") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetParent") //DOM<SetParent>("Target", "Origin")
+                    {
+                        fjs.Add(i.Replace("DOM<SetParent>", "$qs.element.setParent") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetStyle") //DOM<SetStyle>("Target", style)
+                    {
+                        fjs.Add(i.Replace("DOM<SetStyle>", "$qs.element.setStyle") + ";");
+                    }
+
+                    if (InBrackets(i) == "AddStyle") //DOM<AddStyle>("Target", style)
+                    {
+                        fjs.Add(i.Replace("DOM<AddStyle>", "$qs.element.addStyle") + ";");
                     }
                 }
 
@@ -331,9 +376,10 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
             }
 
-            // Final Parser Actions
+            // Final Parser Actions + Commands
             return String.Join("", fjs.ToArray())
-            .Replace("DOM<Find>", "$qs.element.find"); //Dom<Find>("target")
+            .Replace("DOM<Find>", "$qs.element.find") //DOM<Find>("target")
+            .Replace("DOM<Pick>", "$qs.element.pick"); //DOM<Pick>("target")
         }
 
         static string InBrackets(string i)

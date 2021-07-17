@@ -27,12 +27,37 @@
     <None Update="NSLibraries\misc\jquery\jquery-3.6.0.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="NSLibraries\NSAbstractions.js">
+    <None Update="NSLibraries\abstractions\NSAbstractions.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="NSLibraries\QuasarStack.js">
+    <None Update="NSLibraries\project\base\Views\index.ns">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\qs\QuasarStack.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\system\css\CSSReset.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\system\html\NSDocumentBase.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\system\html\NSSocialMediaCard.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\system\html\NSTwitterCard.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\system\js\HTMLSanitizer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NSLibraries\project\base\Models\" />
+    <Folder Include="NSLibraries\project\base\Controllers\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties nslibraries_4project_4base_4app_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
