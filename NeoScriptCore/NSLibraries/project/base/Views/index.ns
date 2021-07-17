@@ -1,0 +1,12 @@
+﻿Application<Title>("Teste")
+Application<Description>("Teste")
+Application<Icon>("")
+
+Element<div> myElement
+	id: 'myElement'
+	content: 'Hello World'
+end-Element
+
+echo(myElement)
+
+DOM<Destroy>('#myElement', 3)

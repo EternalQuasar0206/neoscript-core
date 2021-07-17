@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using NeoScriptCore.ProjectHandler.Models;
 using NeoScriptCore.ProjectHandler.Controllers;
 using System.Text.RegularExpressions;
 using System.Linq;
