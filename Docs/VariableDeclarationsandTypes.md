@@ -1,3 +1,6 @@
+Next: [***Function Declarations >>***](a.com)<br>
+Previous: [***Creating a new project >>***](a.com)
+<br>
 # Variable Declarations and Types
 Declaring a variable inline uses the same JavaScript method, but there are other extension methods for variables that use multiple lines.
 ## var (Generic Inline Variables)
@@ -34,6 +37,3 @@ Alternative to using generic variables with multi-line (`) initializers that fol
 >yeah.**<br>
 >**end-mstring**<br>
 
-<br>
-Next: **Function Declarations >>**<br>
-Previous: **Creating a new project >>**
