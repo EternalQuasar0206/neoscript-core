@@ -36,6 +36,15 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add(i + ";");
                 }
 
+                 /* Let var
+                 * let MyVar = 0
+                 */
+
+                if (i.StartsWith("let "))
+                {
+                    fjs.Add(i + ";");
+                }
+
                 /* obj
                  * obj MyObject
                  * a: "1"
@@ -533,30 +542,14 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add(i + ",");
                 }
 
-                else if (i != "")
+                else if (i != "" && !i.StartsWith("#"))
                 {
                     fjs.Add(i + ";");
                 }
             }
 
             // Final Parser Actions + Commands
-            return String.Join("", fjs.ToArray())
-            //DOM CORRECTIONS
-            .Replace("DOM<Find>", "$qs.element.find") //DOM<Find>("target")
-            .Replace("DOM<Pick>", "$qs.element.pick") //DOM<Pick>("target")
-            .Replace("DOMAll<Find>", "$qs.elementAll.find") //DOMAll<Find>("target")
-            .Replace("DOMAll<Pick>", "$qs.elementAll.pick") //DOMAll<Pick>("target")
-            //Environment CORRECTIONS
-            .Replace("Environment<Info>", "$qs.action.browserInfo()")
-            .Replace("Environment<AppInfo>", "$qs.action.appInfo()")
-            //Misc
-            .Replace("Date<Now>", "$qs.date.now()")
-            .Replace("Data<IsElement>", "$qs.data.check.element")
-            .Replace("Data<IsEmail>", "$qs.data.check.email")
-            .Replace("Data<IsPhone>", "$qs.data.check.phone")
-            .Replace("Data<NumFilter>", "$qs.data.num.filter")
-            .Replace("Data<NumRemove>", "$qs.data.num.remove")
-            .Replace("Data<NumList>", "$qs.data.num.list");
+            return String.Join("", fjs.ToArray());
         }
 
         static string InBrackets(string i)
