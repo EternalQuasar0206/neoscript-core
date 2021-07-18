@@ -551,30 +551,5 @@ namespace NeoScriptCore.ProjectHandler.Controllers
             // Final Parser Actions + Commands
             return String.Join("", fjs.ToArray());
         }
-
-        static string InBrackets(string i)
-        {
-            return String.Join("", Regex.Match(i, @"\<(.+?)\>").Groups[1].Value).Replace(">", "").Replace("<", "");
-        }
-
-        static string InSquareBrackets(string i)
-        {
-            return String.Join("", Regex.Match(i, @"\[(.+?)\]").Groups[1].Value).Replace("]", "").Replace("[", "");
-        }
-
-        static string InRoundBrackets(string i)
-        {
-            return String.Join("", Regex.Match(i, @"\((.+?)\)").Groups[1].Value).Replace(")", "").Replace("(", "");
-        }
-
-        static string RemoveFirst(string firstOc, string baseString)
-        {
-            return new Regex(Regex.Escape(firstOc)).Replace(baseString, "", 1);
-        }
-
-        static string ReplaceFirst(string firstOc, string baseString, string toReplace)
-        {
-            return new Regex(Regex.Escape(firstOc)).Replace(baseString, toReplace, 1);
-        }
     }
 }
