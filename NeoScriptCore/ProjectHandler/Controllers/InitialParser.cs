@@ -95,11 +95,11 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
 
                 /* loop
-                 * loop(8)
+                 * loop[8]
                  * print("Test")
                  * end-loop
                  */
-                else if (i.StartsWith("loop("))
+                else if (i.StartsWith("loop["))
                 {
                     string instanceName = "nsLInstance_"
                     + new Random().Next(0, 999)
@@ -109,7 +109,7 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     fjs.Add("for(var "
                     + instanceName
                     + " = "
-                    + InRoundBrackets(i)
+                    + InSquareBrackets(i)
                     + ";"
                     + instanceName
                     + " > 0;"
@@ -398,6 +398,126 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     }
                 }
 
+                else if (i.StartsWith("DOMAll<"))
+                {
+                    if (InBrackets(i) == "Destroy") //DOMAll<Destroy>("elementAll", Timeout)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Destroy>", "$qs.elementAll.destroy") + ";");
+                    }
+
+                    if (InBrackets(i) == "Clear") //DOMAll<Clear>("elementAll")
+                    {
+                        fjs.Add(i.Replace("DOMAll<Clear>", "$qs.elementAll.clear") + ";");
+                    }
+
+                    if (InBrackets(i) == "Hide") //DOMAll<Hide>("elementAll")
+                    {
+                        fjs.Add(i.Replace("DOMAll<Hide>", "$qs.elementAll.hide") + ";");
+                    }
+
+                    if (InBrackets(i) == "Show") //DOMAll<Show>("elementAll", "NewDisplayType")
+                    {
+                        fjs.Add(i.Replace("DOMAll<Show>", "$qs.elementAll.show") + ";");
+                    }
+
+                    if (InBrackets(i) == "Update") //DOMAll<Update>("elementAll", New Content)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Update>", "$qs.elementAll.update") + ";");
+                    }
+
+                    if (InBrackets(i) == "Inject") //DOMAll<Inject>("elementAll", New Content)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Inject>", "$qs.elementAll.inject") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetParent") //DOMAll<SetParent>("Target", "Origin")
+                    {
+                        fjs.Add(i.Replace("DOMAll<SetParent>", "$qs.elementAll.setParent") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetParent") //DOMAll<SetParent>("Target", "Origin")
+                    {
+                        fjs.Add(i.Replace("DOMAll<SetParent>", "$qs.elementAll.setParent") + ";");
+                    }
+
+                    if (InBrackets(i) == "SetStyle") //DOMAll<SetStyle>("Target", style)
+                    {
+                        fjs.Add(i.Replace("DOMAll<SetStyle>", "$qs.elementAll.setStyle") + ";");
+                    }
+
+                    if (InBrackets(i) == "AddStyle") //DOMAll<AddStyle>("Target", style)
+                    {
+                        fjs.Add(i.Replace("DOMAll<AddStyle>", "$qs.elementAll.addStyle") + ";");
+                    }
+
+                    if (InBrackets(i) == "ForeColor") //DOMAll<ForeColor>("Target", color)
+                    {
+                        fjs.Add(i.Replace("DOMAll<ForeColor>", "$qs.elementAll.foreColor") + ";");
+                    }
+
+                    if (InBrackets(i) == "BackColor") //DOMAll<BackColor>("Target", color)
+                    {
+                        fjs.Add(i.Replace("DOMAll<BackColor>", "$qs.elementAll.backColor") + ";");
+                    }
+
+                    if (InBrackets(i) == "Resize") //DOMAll<Resize>("Target", New size[???x???])
+                    {
+                        fjs.Add(i.Replace("DOMAll<Resize>", "$qs.elementAll.resize") + ";");
+                    }
+
+                    if (InBrackets(i) == "Scale") //DOMAll<Resize>("Target", New scale)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Resize>", "$qs.elementAll.scale") + ";");
+                    }
+
+                    if (InBrackets(i) == "Rotate") //DOMAll<Rotate>("Target", Deg)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Rotate>", "$qs.elementAll.rotate") + ";");
+                    }
+
+                    if (InBrackets(i) == "Rotate3d") //DOMAll<Rotate>("Target", x, y, z, angle)
+                    {
+                        fjs.Add(i.Replace("DOMAll<Rotate3d>", "$qs.elementAll.rotate3d") + ";");
+                    }
+
+                    if (InBrackets(i) == "AnimationTime") //DOMAll<AnimationTime>("Target", time)
+                    {
+                        fjs.Add(i.Replace("DOMAll<AnimationTime>", "$qs.elementAll.animationTime") + ";");
+                    }
+                }
+
+                //Environment Methods
+                else if (i.StartsWith("Environment<"))
+                {
+                    if (InBrackets(i) == "ViewportTrigger") //Environment<ViewportTrigger>(timeout, fullReset = false)
+                    {
+                        fjs.Add(i.Replace("Environment<ViewportTrigger>", "$qs.action.viewportTrigger") + ";");
+                    }
+
+                    if (InBrackets(i) == "Reset") //Environment<Reset>(fullReset = false)
+                    {
+                        fjs.Add(i.Replace("Environment<Reset>", "$qs.action.reset") + ";");
+                    }
+
+                    if (InBrackets(i) == "DisableZoom") //Environment<DisableZoom>(disableZoom = false)
+                    {
+                        fjs.Add(i.Replace("Environment<DisableZoom>", "$qs.action.disableZoom") + ";");
+                    }
+                }
+
+                /* Update[interval]
+                 * code
+                 * end-Update
+                 */
+                
+                else if (i.StartsWith("Update")) 
+                {
+                    fjs.Add(i.Replace("Update[" + InSquareBrackets(i) + "]", "$qs.action.update(" + InSquareBrackets(i) + ", `"));
+                }
+                else if (i.StartsWith("end-Update"))
+                {
+                    fjs.Add(i.Replace("end-Update", "`);"));
+                }
                 /*========== OTHERS ==========*/
 
                 else if (i != "" && ObjCreation)
@@ -413,13 +533,24 @@ namespace NeoScriptCore.ProjectHandler.Controllers
 
             // Final Parser Actions + Commands
             return String.Join("", fjs.ToArray())
+            //DOM CORRECTIONS
             .Replace("DOM<Find>", "$qs.element.find") //DOM<Find>("target")
-            .Replace("DOM<Pick>", "$qs.element.pick"); //DOM<Pick>("target")
+            .Replace("DOM<Pick>", "$qs.element.pick") //DOM<Pick>("target")
+            .Replace("DOMAll<Find>", "$qs.elementAll.find") //DOMAll<Find>("target")
+            .Replace("DOMAll<Pick>", "$qs.elementAll.pick") //DOMAll<Pick>("target")
+            //Environment CORRECTIONS
+            .Replace("Environment<Info>", "$qs.action.browserInfo()")
+            .Replace("Environment<AppInfo>", "$qs.action.appInfo()");
         }
 
         static string InBrackets(string i)
         {
             return String.Join("", Regex.Match(i, @"\<(.+?)\>").Groups[1].Value).Replace(">", "").Replace("<", "");
+        }
+
+        static string InSquareBrackets(string i)
+        {
+            return String.Join("", Regex.Match(i, @"\[(.+?)\]").Groups[1].Value).Replace("]", "").Replace("[", "");
         }
 
         static string InRoundBrackets(string i)
