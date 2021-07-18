@@ -24,3 +24,12 @@ Arrays (vectors) are composite variables that are declared in multiple lines jus
 >**'Content 2'**<br>
 >**'Content 3'**<br>
 >**end-array**
+
+## mstring (Multi-line strings)
+Alternative to using generic variables with multi-line (`) initializers that follow the syntax:
+
+>**mstring MyMultilineString**<br>
+>**This is an example of<br>
+>multiline string usage<br>
+>yeah.**<br>
+>**end-mstring**<br>
