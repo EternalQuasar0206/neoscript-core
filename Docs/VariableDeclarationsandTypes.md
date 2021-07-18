@@ -5,6 +5,7 @@ The most common type of variable. To be declared, just use the conventional synt
 
 > **var MyVariable = MyContent**
 
-**. It can be any value, text enclosed in single quotes (**'**) or double quotes (**"**), a number, or ***Boolean*** notation.
+It can be any value, text enclosed in single quotes (**'**) or double quotes (**"**), a number, or ***Boolean*** notation.
 
 ### obj
+
