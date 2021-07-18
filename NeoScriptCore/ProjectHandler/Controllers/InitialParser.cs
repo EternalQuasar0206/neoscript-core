@@ -520,6 +520,14 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                 }
                 /*========== OTHERS ==========*/
 
+                else if (i.StartsWith("Data<"))
+                {
+                    if (InBrackets(i) == "Vardump") //Data<Vardump>(variable)
+                    {
+                        fjs.Add(i.Replace("Data<Vardump>", "$qs.data.vardump") + ";");
+                    }
+                }
+
                 else if (i != "" && ObjCreation)
                 {
                     fjs.Add(i + ",");
@@ -540,7 +548,15 @@ namespace NeoScriptCore.ProjectHandler.Controllers
             .Replace("DOMAll<Pick>", "$qs.elementAll.pick") //DOMAll<Pick>("target")
             //Environment CORRECTIONS
             .Replace("Environment<Info>", "$qs.action.browserInfo()")
-            .Replace("Environment<AppInfo>", "$qs.action.appInfo()");
+            .Replace("Environment<AppInfo>", "$qs.action.appInfo()")
+            //Misc
+            .Replace("Date<Now>", "$qs.date.now()")
+            .Replace("Data<IsElement>", "$qs.data.check.element")
+            .Replace("Data<IsEmail>", "$qs.data.check.email")
+            .Replace("Data<IsPhone>", "$qs.data.check.phone")
+            .Replace("Data<NumFilter>", "$qs.data.num.filter")
+            .Replace("Data<NumRemove>", "$qs.data.num.remove")
+            .Replace("Data<NumList>", "$qs.data.num.list");
         }
 
         static string InBrackets(string i)
