@@ -361,6 +361,41 @@ namespace NeoScriptCore.ProjectHandler.Controllers
                     {
                         fjs.Add(i.Replace("DOM<AddStyle>", "$qs.element.addStyle") + ";");
                     }
+
+                    if (InBrackets(i) == "ForeColor") //DOM<ForeColor>("Target", color)
+                    {
+                        fjs.Add(i.Replace("DOM<ForeColor>", "$qs.element.foreColor") + ";");
+                    }
+
+                    if (InBrackets(i) == "BackColor") //DOM<BackColor>("Target", color)
+                    {
+                        fjs.Add(i.Replace("DOM<BackColor>", "$qs.element.backColor") + ";");
+                    }
+
+                    if (InBrackets(i) == "Resize") //DOM<Resize>("Target", New size[???x???])
+                    {
+                        fjs.Add(i.Replace("DOM<Resize>", "$qs.element.resize") + ";");
+                    }
+
+                    if (InBrackets(i) == "Scale") //DOM<Resize>("Target", New scale)
+                    {
+                        fjs.Add(i.Replace("DOM<Resize>", "$qs.element.scale") + ";");
+                    }
+
+                    if (InBrackets(i) == "Rotate") //DOM<Rotate>("Target", Deg)
+                    {
+                        fjs.Add(i.Replace("DOM<Rotate>", "$qs.element.rotate") + ";");
+                    }
+
+                    if (InBrackets(i) == "Rotate3d") //DOM<Rotate>("Target", x, y, z, angle)
+                    {
+                        fjs.Add(i.Replace("DOM<Rotate3d>", "$qs.element.rotate3d") + ";");
+                    }
+
+                    if (InBrackets(i) == "AnimationTime") //DOM<AnimationTime>("Target", time)
+                    {
+                        fjs.Add(i.Replace("DOM<AnimationTime>", "$qs.element.animationTime") + ";");
+                    }
                 }
 
                 /*========== OTHERS ==========*/
