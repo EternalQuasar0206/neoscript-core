@@ -33,3 +33,7 @@ Alternative to using generic variables with multi-line (`) initializers that fol
 >multiline string usage<br>
 >yeah.**<br>
 >**end-mstring**<br>
+
+<br>
+Next: ***Function Declarations >>***<br>
+Previous: ***Creating a new project >>***
