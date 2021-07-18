@@ -10,17 +10,17 @@ It can be any value, text enclosed in single quotes (**'**) or double quotes (**
 ## obj (Object Variables)
 Objects are composite variables that always contain two values per section: a key and a content. The declaration of objects (just like the declaration of arrays) is defined in the first line, its contents inside and then ended with a specific indicator following the syntax:
 
->**obj MyObject**
->**a: 'Content of a'**
->**b: 'Content of b'**
->**c: 'Content of c'**
+>**obj MyObject**<br>
+>**a: 'Content of a'**<br>
+>**b: 'Content of b'**<br>
+>**c: 'Content of c'**<br>
 >**end-obj**
 
 ## array (Vector Variables)
 Arrays (vectors) are composite variables that are declared in multiple lines just like objects, but their difference is that they only hold values and not declarative keys following the syntax:
 
->**array MyArray**
->**'Content 1'**
->**'Content 2'**
->**'Content 3'**
+>**array MyArray**<br>
+>**'Content 1'**<br>
+>**'Content 2'**<br>
+>**'Content 3'**<br>
 >**end-array**
