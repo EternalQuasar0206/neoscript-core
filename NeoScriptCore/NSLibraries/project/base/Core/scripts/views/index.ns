@@ -1,0 +1,3 @@
+﻿echo(LogoContainer)
+
+DOM<Inject>("LogoContainer", LogoNS)

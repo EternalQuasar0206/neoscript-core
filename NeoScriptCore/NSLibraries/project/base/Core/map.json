@@ -1,0 +1,11 @@
+﻿[
+  {
+    "View": "/scripts/views/index.ns",
+    "controllers": [
+      "/scripts/controllers/indexController.ns"
+    ],
+    "models": [
+      "/scripts/models/LogoNeoScript.ns"
+    ]
+  }
+]

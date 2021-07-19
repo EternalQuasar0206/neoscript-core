@@ -1,0 +1,12 @@
+﻿Element<div> LogoContainer
+	id: "#LogoContainer"
+	align: center
+end-Element
+
+Element<img> LogoNS
+	src: "/media/NeoScriptLogo.png"
+end-Element
+
+Element<h1> LogoText
+	content: Welcome to NeoScript!
+end-Element

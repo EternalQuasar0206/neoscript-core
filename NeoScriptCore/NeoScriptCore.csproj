@@ -30,10 +30,22 @@
     <None Update="NSLibraries\abstractions\NSAbstractions.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="NSLibraries\project\base\Views\index.ns">
+    <None Update="NSLibraries\project\base\Core\css\_fil.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="NSLibraries\qs\QuasarStack.js">
+    <None Update="NSLibraries\project\base\Core\scripts\controllers\indexController.ns">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\project\base\Core\scripts\models\LogoNeoScript.ns">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\project\base\Core\scripts\views\index.ns">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\project\base\Core\scripts\QuasarStack.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NSLibraries\project\base\Core\map.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="NSLibraries\system\css\CSSReset.css">
@@ -51,11 +63,6 @@
     <None Update="NSLibraries\system\js\HTMLSanitizer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="NSLibraries\project\base\Models\" />
-    <Folder Include="NSLibraries\project\base\Controllers\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties nslibraries_4project_4base_4app_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

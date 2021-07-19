@@ -1,0 +1,2 @@
+﻿Application<Title>("NeoScript Application")
+Application<Icon>("/img/NeoScriptLogo.png")
